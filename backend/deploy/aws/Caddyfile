@@ -1,0 +1,11 @@
+# /etc/caddy/Caddyfile — Caddy gets and renews the HTTPS certificate for projectx.build automatically.
+
+projectx.build {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:4000
+}
+
+# One public address: send www to the bare domain.
+www.projectx.build {
+	redir https://projectx.build{uri} permanent
+}

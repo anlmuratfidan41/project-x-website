@@ -1,0 +1,11 @@
+node_modules/
+**/dist/
+backend/data/
+.env
+.env.*
+!.env.example
+!.env.production.example
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.tsbuildinfo

@@ -1,0 +1,21 @@
+# /etc/systemd/system/projectx.service — keeps the website + API running and restarts it after a crash or reboot.
+[Unit]
+Description=Project X website and API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=projectx
+WorkingDirectory=/opt/projectx/app/backend
+EnvironmentFile=/opt/projectx/app/backend/.env
+ExecStart=/usr/bin/node dist/server.js
+Restart=always
+RestartSec=5
+# The app only needs its own folder and the database folder.
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/var/data /opt/projectx/app/backend
+
+[Install]
+WantedBy=multi-user.target
